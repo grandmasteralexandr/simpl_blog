@@ -28,8 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'body:ntext',
-//            'rubric_id',
+
+            [
+                'attribute' => 'body',
+                'format' => 'html',
+            ],
+
             [
                 'attribute' => 'rubric_id',
                 'value' => 'RubricName',
