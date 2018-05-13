@@ -48,6 +48,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'rubric/<id:\d+>/<action:(create|update|delete)>' => 'rubric/<action>',
+                'rubric/<id:\d+>' => 'rubric/view',
             ],
         ],
 
@@ -56,6 +58,7 @@ return [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'site/*',
+            'gii/*',
 //            'admin/*',
 //            'some-controller/some-action',
             // The actions listed here will be allowed to everyone including guests.
