@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "post".
@@ -11,6 +12,7 @@ use Yii;
  * @property string $title
  * @property string $body
  * @property int $rubric_id
+ * @property string $status
  *
  * @property Rubric $rubric
  */
@@ -31,7 +33,7 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'body', 'rubric_id'], 'required'],
-            [['body'], 'string', 'max' => 65535],
+            [['body', 'status'], 'string'],
             [['rubric_id'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['rubric_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rubric::className(), 'targetAttribute' => ['rubric_id' => 'id']],
@@ -47,7 +49,8 @@ class Post extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'body' => 'Body',
-            'rubric_id' => 'Rubric ID',
+            'rubric_id' => 'Rubric',
+            'status' => 'Status',
         ];
     }
 
@@ -57,5 +60,31 @@ class Post extends \yii\db\ActiveRecord
     public function getRubric()
     {
         return $this->hasOne(Rubric::className(), ['id' => 'rubric_id']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getRubricList()
+    {
+        $list = Rubric::find()->all();
+        return ArrayHelper::map($list, 'id', 'name');
+    }
+
+    /**
+     * @return string
+     */
+    public function getRubricName()
+    {
+        $list = $this->getRubric()->one();
+        return ArrayHelper::getValue($list, 'name');
+    }
+
+    /**
+     * @return array
+     */
+    public function getStatusEnum()
+    {
+        return [ 'Draft' => 'Draft', 'Active' => 'Active', 'Archive' => 'Archive', ];
     }
 }

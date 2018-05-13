@@ -31,7 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'body:ntext',
-            'rubric_id',
+            ['attribute' => 'rubric_id',  'value' => $model->getRubricName()],
+            'status',
         ],
     ]) ?>
 

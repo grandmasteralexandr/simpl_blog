@@ -16,7 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'rubric_id')->textInput() ?>
+    <?= $form->field($model, 'rubric_id')->dropDownList($model->getRubricList()) ?>
+
+    <?= $form->field($model, 'status')->dropDownList($model->getStatusEnum()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

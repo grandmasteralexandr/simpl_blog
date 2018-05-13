@@ -6,6 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model common\models\Post */
 
 $this->title = 'Posts';
 $this->params['breadcrumbs'][] = $this->title;
@@ -28,7 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'body:ntext',
-            'rubric_id',
+//            'rubric_id',
+            [
+                'attribute' => 'rubric_id',
+                'value' => 'RubricName',
+                'filter' => $model->getRubricList(),
+            ],
+
+            ['attribute' => 'status',
+            'filter' => $model->getStatusEnum(),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

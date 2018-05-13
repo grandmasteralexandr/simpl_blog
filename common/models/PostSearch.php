@@ -19,7 +19,7 @@ class PostSearch extends Post
     {
         return [
             [['id', 'rubric_id'], 'integer'],
-            [['title', 'body'], 'safe'],
+            [['title', 'body', 'status'], 'safe'],
         ];
     }
 
@@ -64,7 +64,8 @@ class PostSearch extends Post
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'body', $this->body]);
+            ->andFilterWhere(['like', 'body', $this->body])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }
