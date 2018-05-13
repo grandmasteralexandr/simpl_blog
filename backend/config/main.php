@@ -48,8 +48,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'rubric/<id:\d+>/<action:(create|update|delete)>' => 'rubric/<action>',
-                'rubric/<id:\d+>' => 'rubric/view',
+                '<controller:(rubric|post)>/<id:\d+>/<action:(create|update|delete)>' => '<controller>/<action>',
+                '<controller:(rubric|post)>/<id:\d+>' => '<controller>/view',
             ],
         ],
 
