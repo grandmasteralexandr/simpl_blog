@@ -33,6 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'body:html',
             ['attribute' => 'rubric_id',  'value' => $model->getRubricName()],
             'status',
+            'creation_time:datetime',
+            'update_time:datetime',
         ],
     ]) ?>
 

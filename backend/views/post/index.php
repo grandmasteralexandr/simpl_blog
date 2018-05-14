@@ -44,6 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'filter' => $model->getStatusEnum(),
             ],
 
+            'creation_time:datetime',
+            'update_time:datetime',
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

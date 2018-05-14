@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "post".
@@ -86,5 +87,16 @@ class Post extends \yii\db\ActiveRecord
     public function getStatusEnum()
     {
         return [ 'Draft' => 'Draft', 'Active' => 'Active', 'Archive' => 'Archive', ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'creation_time',
+                'updatedAtAttribute' => 'update_time',
+            ],
+        ];
     }
 }
