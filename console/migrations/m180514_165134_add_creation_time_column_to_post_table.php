@@ -12,8 +12,8 @@ class m180514_165134_add_creation_time_column_to_post_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('post', 'creation_time', $this->timestamp());
-        $this->addColumn('post', 'update_time', $this->timestamp());
+        $this->addColumn('post', 'creation_time', $this->integer(11));
+        $this->addColumn('post', 'update_time', $this->integer(11));
     }
 
     /**
