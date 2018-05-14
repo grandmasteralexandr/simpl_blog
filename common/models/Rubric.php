@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use Yii;
 
 /**
  * This is the model class for table "rubric".
@@ -41,5 +40,21 @@ class Rubric extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPost()
+    {
+        return $this->hasMany(Post::className(), ['rubric_id' => 'id']);
+    }
+
+    /**
+     * @return int
+     */
+    public function getPostCount()
+    {
+        return $this->getPost()->count();
     }
 }

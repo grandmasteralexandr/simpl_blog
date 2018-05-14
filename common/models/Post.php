@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 
@@ -16,6 +15,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $status
  *
  * @property Rubric $rubric
+ * @property int $creation_time
+ * @property int $update_time
  */
 class Post extends \yii\db\ActiveRecord
 {

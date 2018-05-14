@@ -2,10 +2,8 @@
 
 namespace common\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Post;
 
 /**
  * PostSearch represents the model behind the search form of `common\models\Post`.
