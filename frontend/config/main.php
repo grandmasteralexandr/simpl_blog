@@ -48,6 +48,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'post/<id:\d+>' => 'post/view',
             ],
         ],
 
@@ -57,6 +58,7 @@ return [
         'allowActions' => [
             'site/*',
             'gii/*',
+            'post/view'
 //            'admin/*',
 //            'some-controller/some-action',
             // The actions listed here will be allowed to everyone including guests.

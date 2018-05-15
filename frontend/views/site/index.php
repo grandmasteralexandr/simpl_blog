@@ -34,7 +34,7 @@ $this->title = 'My Yii Application';
                     ?>
 
                 <h3><?php
-                   echo Html::a($post->title, Url::to(['post/'. $post->id .'/view']) );
+                   echo Html::a($post->title, Url::to(['post/'. $post->id]) );
                     ?></h3>
                     <?php endforeach; ?>
 
