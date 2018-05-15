@@ -24,7 +24,8 @@ class PostController extends Controller
                 'model' => $this->findModel($id),
             ]);
         }
-        else throw new NotFoundHttpException('The requested post does not exist.');
+
+        throw new NotFoundHttpException('The requested post does not exist.');
     }
 
     /**
