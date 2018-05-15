@@ -75,6 +75,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        //TODO вынести в модель?
         $postQuery = Post::find()->where(['status' => 'Active']);
         $postPages = new Pagination(['totalCount' => $postQuery->count(), 'pageSize' => 5]);
         $posts = $postQuery->offset($postPages->offset)->limit($postPages->limit)->all();
