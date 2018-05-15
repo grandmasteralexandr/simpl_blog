@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\base\InvalidParamException;
+use yii\data\Pagination;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -74,11 +75,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $posts = Post::find()->limit(5)->all();
+        $postQuery = Post::find()->where(['status' => 'Active']);
+        $postPages = new Pagination(['totalCount' => $postQuery->count(), 'pageSize' => 5]);
+        $posts = $postQuery->offset($postPages->offset)->limit($postPages->limit)->all();
         $rubrics = Rubric::find()->all();
 
         return $this->render('index', [
             'posts' => $posts,
+            'postPages' => $postPages,
             'rubrics' => $rubrics,
         ]);
     }

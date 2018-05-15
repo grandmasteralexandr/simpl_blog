@@ -97,6 +97,7 @@ class Post extends \yii\db\ActiveRecord
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'creation_time',
                 'updatedAtAttribute' => 'update_time',
+                'value' => function () { return date('Y-m-d H:i:s'); }
             ],
         ];
     }

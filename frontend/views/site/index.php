@@ -1,7 +1,12 @@
 <?php
 
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\LinkPager;
+
 /* @var $this yii\web\View */
 /* @var $posts \common\models\Post */
+/* @var $postPages \yii\data\Pagination */
 /* @var $rubrics \common\models\Rubric */
 
 
@@ -21,28 +26,32 @@ $this->title = 'My Yii Application';
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p><?php foreach ($posts as $post): ?>
+                <?php foreach ($posts as $post): ?>
+
                     <?php
-                    echo $post->title;
-                    echo $post->body;
-                    ?></p>
+                       echo $post->creation_time;
+                    ?>
+
+                <h3><?php
+                   echo Html::a($post->title, Url::to(['post/'. $post->id .'/view']) );
+                    ?></h3>
                     <?php endforeach; ?>
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+
+                <?php
+                echo LinkPager::widget([
+                    'pagination' => $postPages,
+                ]);
+                ?>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p><?php foreach ($rubrics as $rubric): ?>
-                    <?php
-                    echo $rubric->name;
-                    echo ' ';
-                    echo $rubric->getPostCount();
-                    ?></p>
+                <?php foreach ($rubrics as $rubric): ?>
+                <h4><?php
+                    echo Html::a($rubric->name .' ('. $rubric->getPostCount() .')', Url::to());
+                    ?></h4>
                 <?php endforeach; ?>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h2>Heading</h2>
