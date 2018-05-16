@@ -104,8 +104,10 @@ class RubricController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        if ($this->findModel($id)->getPostCount() == 0) {
+            $this->findModel($id)->delete();
+        }
+        else Yii::$app->session->addFlash('danger', 'Rubric count must be 0');
         return $this->redirect(['index']);
     }
 
