@@ -8,6 +8,7 @@ use yii\behaviors\SluggableBehavior;
  * This is the model class for table "rubric".
  *
  * @property int $id
+ * @property string $slug
  * @property string $name
  */
 class Rubric extends \yii\db\ActiveRecord

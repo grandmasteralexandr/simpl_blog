@@ -10,6 +10,7 @@ use yii\behaviors\SluggableBehavior;
  * This is the model class for table "post".
  *
  * @property int $id
+ * @property string $slug
  * @property string $title
  * @property string $body
  * @property int $rubric_id
