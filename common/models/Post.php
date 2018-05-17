@@ -4,6 +4,7 @@ namespace common\models;
 
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "post".
@@ -98,6 +99,11 @@ class Post extends \yii\db\ActiveRecord
                 'createdAtAttribute' => 'creation_time',
                 'updatedAtAttribute' => 'update_time',
                 'value' => function () { return date('Y-m-d H:i:s'); }
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+                // 'slugAttribute' => 'slug',
             ],
         ];
     }

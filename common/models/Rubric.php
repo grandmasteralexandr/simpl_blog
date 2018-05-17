@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "rubric".
@@ -56,5 +57,16 @@ class Rubric extends \yii\db\ActiveRecord
     public function getPostCount()
     {
         return $this->getPost()->count();
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                // 'slugAttribute' => 'slug',
+            ],
+        ];
     }
 }
