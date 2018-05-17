@@ -15,6 +15,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\Post;
 use common\models\Rubric;
+use common\models\Subscriber;
 
 /**
  * Site controller
@@ -79,12 +80,26 @@ class SiteController extends Controller
         $postQuery = Post::find()->where(['status' => 'Active']);
         $postPages = new Pagination(['totalCount' => $postQuery->count(), 'pageSize' => 5]);
         $posts = $postQuery->offset($postPages->offset)->limit($postPages->limit)->all();
+
         $rubrics = Rubric::find()->all();
+
+        $subscriber = new Subscriber();
+
+        if ($subscriber->load(Yii::$app->request->post()) && $subscriber->validate()) {
+            if ($subscriber->save()) {
+                Yii::$app->session->addFlash('success', 'You Successfuly subcribed');
+                return $this->refresh();
+            }
+            else {
+                    return $this->render('index', ['subscribe' => $subscriber]);
+                }
+            }
 
         return $this->render('index', [
             'posts' => $posts,
             'postPages' => $postPages,
             'rubrics' => $rubrics,
+            'subscriber' => $subscriber
         ]);
     }
 

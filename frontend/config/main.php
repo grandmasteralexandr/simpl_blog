@@ -58,7 +58,8 @@ return [
         'allowActions' => [
             'site/*',
             'gii/*',
-            'post/view'
+            'post/view',
+            'debug/*',
 //            'admin/*',
 //            'some-controller/some-action',
             // The actions listed here will be allowed to everyone including guests.
