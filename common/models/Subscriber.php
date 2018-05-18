@@ -41,4 +41,12 @@ class Subscriber extends \yii\db\ActiveRecord
             'email' => 'Email',
         ];
     }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function getEmails()
+    {
+        return $this->find()->all();
+    }
 }

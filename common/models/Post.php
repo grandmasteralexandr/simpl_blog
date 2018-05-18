@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\SluggableBehavior;
@@ -22,6 +23,14 @@ use yii\behaviors\SluggableBehavior;
  */
 class Post extends \yii\db\ActiveRecord
 {
+    const EVENT_NEW_ACTIVE_POST = 'new_active_post';
+
+    public function init()
+    {
+        $this->on(Self::EVENT_NEW_ACTIVE_POST, [Yii::$app->mailService, 'sendNewPosts']);
+        parent::init();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -92,6 +101,9 @@ class Post extends \yii\db\ActiveRecord
         return [ 'Draft' => 'Draft', 'Active' => 'Active', 'Archive' => 'Archive', ];
     }
 
+    /**
+     * @return array
+     */
     public function behaviors()
     {
         return [

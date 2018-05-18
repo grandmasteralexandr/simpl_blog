@@ -12,5 +12,8 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             ],
+        'mailService' => [
+          'class' => 'common\components\MailService',
+        ],
         ],
 ];
