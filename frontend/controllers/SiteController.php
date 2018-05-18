@@ -90,9 +90,8 @@ class SiteController extends Controller
                 Yii::$app->session->addFlash('success', 'You Successfuly subcribed');
                 return $this->refresh();
             }
-            else {
-                    return $this->render('index', ['subscribe' => $subscriber]);
-                }
+            return $this->render('index', ['subscribe' => $subscriber]);
+
             }
 
         return $this->render('index', [
