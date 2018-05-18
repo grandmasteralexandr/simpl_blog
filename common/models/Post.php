@@ -123,17 +123,16 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
-     * @param bool $runValidation
-     * @param null $attributeNames
-     * @return bool
+     * @param bool $insert
+     * @param array $changedAttributes
      */
-    public function save($runValidation = true, $attributeNames = null)
+    public function afterSave($insert, $changedAttributes)
     {
         if ($this->status == 'Active') {
             $event = new NewActivePost();
             $event->post = $this;
             $this->trigger(Post::EVENT_NEW_ACTIVE_POST, $event);
         }
-        return parent::save($runValidation, $attributeNames);
+        parent::afterSave($insert, $changedAttributes);
     }
 }
