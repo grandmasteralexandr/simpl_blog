@@ -2,7 +2,6 @@
 
 namespace backend\controllers;
 
-use common\models\events\NewActivePost;
 use Yii;
 use common\models\Post;
 use common\models\PostSearch;
@@ -70,11 +69,6 @@ class PostController extends Controller
         $model = new Post();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if ($model->status == 'Active') {
-                $event = new NewActivePost();
-                $event->post = $model;
-                $model->trigger(Post::EVENT_NEW_ACTIVE_POST, $event);
-            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -95,11 +89,6 @@ class PostController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if ($model->status == 'Active') {
-                $event = new NewActivePost();
-                $event->post = $model;
-                $model->trigger(Post::EVENT_NEW_ACTIVE_POST, $event);
-            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

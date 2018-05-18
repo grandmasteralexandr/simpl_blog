@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\SluggableBehavior;
+use common\models\events\NewActivePost;
 
 /**
  * This is the model class for table "post".
@@ -119,5 +120,15 @@ class Post extends \yii\db\ActiveRecord
                 // 'slugAttribute' => 'slug',
             ],
         ];
+    }
+
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        if ($this->status == 'Active') {
+            $event = new NewActivePost();
+            $event->post = $this;
+            $this->trigger(Post::EVENT_NEW_ACTIVE_POST, $event);
+        }
+        return parent::save($runValidation, $attributeNames);
     }
 }
