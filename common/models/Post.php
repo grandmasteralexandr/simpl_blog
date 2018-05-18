@@ -122,6 +122,11 @@ class Post extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @param bool $runValidation
+     * @param null $attributeNames
+     * @return bool
+     */
     public function save($runValidation = true, $attributeNames = null)
     {
         if ($this->status == 'Active') {
