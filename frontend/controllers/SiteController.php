@@ -81,7 +81,7 @@ class SiteController extends Controller
         $postPages = new Pagination(['totalCount' => $postQuery->count(), 'pageSize' => 5]);
         $posts = $postQuery->offset($postPages->offset)->limit($postPages->limit)->all();
 
-        $rubrics = Rubric::find()->all();
+        $rubrics = Rubric::find()->orderBy('name')->all();
 
         $subscriber = new Subscriber();
 

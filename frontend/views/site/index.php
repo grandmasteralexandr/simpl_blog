@@ -27,6 +27,7 @@ $this->title = 'My Yii Application';
 
         <div class="row">
             <div class="col-lg-4">
+                <h2>Posts</h2>
 
                 <?php foreach ($posts as $post): ?>
 
@@ -46,7 +47,7 @@ $this->title = 'My Yii Application';
                 ?>
             </div>
             <div class="col-lg-4">
-
+                <h2>Rubrics</h2>
                 <?php foreach ($rubrics as $rubric): ?>
                 <h4><?php
                     echo Html::a($rubric->name .' ('. $rubric->getPostCount() .')', Url::to(['rubric/' . $rubric->id]));
