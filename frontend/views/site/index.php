@@ -49,7 +49,7 @@ $this->title = 'My Yii Application';
 
                 <?php foreach ($rubrics as $rubric): ?>
                 <h4><?php
-                    echo Html::a($rubric->name .' ('. $rubric->getPostCount() .')', Url::to());
+                    echo Html::a($rubric->name .' ('. $rubric->getPostCount() .')', Url::to(['rubric/' . $rubric->id]));
                     ?></h4>
                 <?php endforeach; ?>
 

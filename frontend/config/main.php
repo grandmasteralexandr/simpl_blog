@@ -48,7 +48,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'post/<id:\d+>' => 'post/view',
+                '<controller:(rubric|post)>/<id:\d+>' => '<controller>/view',
             ],
         ],
 
@@ -60,6 +60,7 @@ return [
             'gii/*',
             'post/view',
             'debug/*',
+            'rubric/view',
 //            'admin/*',
 //            'some-controller/some-action',
             // The actions listed here will be allowed to everyone including guests.
